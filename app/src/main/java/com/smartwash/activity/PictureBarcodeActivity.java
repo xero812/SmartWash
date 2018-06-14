@@ -1,4 +1,4 @@
-package com.smartwash;
+package com.smartwash.activity;
 
 import android.Manifest;
 import android.content.Context;
@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.smartwash.BuildConfig;
+import com.smartwash.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;

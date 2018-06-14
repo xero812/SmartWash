@@ -20,17 +20,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.smartwash.MainActivity">
+        <activity android:name="com.smartwash.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name="com.smartwash.PictureBarcodeActivity" />
-        <activity android:name="com.smartwash.ScannedBarcodeActivity" />
+        <activity android:name="com.smartwash.activity.PictureBarcodeActivity" />
+        <activity android:name="com.smartwash.activity.ScannedBarcodeActivity" />
         <activity
-            android:name="com.smartwash.EmailActivity"
+            android:name="com.smartwash.activity.EmailActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <meta-data
