@@ -9,4 +9,16 @@ public class Bucket {
     private List<Fabric> fabrics;
 
 
+    public Bucket(int id, List<Fabric> fabrics) {
+        this.id = id;
+        this.fabrics = fabrics;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFabrics(List<Fabric> fabrics) {
+        this.fabrics = fabrics;
+    }
 }

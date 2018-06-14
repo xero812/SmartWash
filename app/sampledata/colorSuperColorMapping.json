@@ -1,0 +1,83 @@
+[
+  {
+    "color": "lavender",
+    "superColor": "Dark"
+  },
+  {
+    "color": "purple",
+    "superColor": "Dark"
+  },
+  {
+    "color": "pink",
+    "superColor": "Light"
+  },
+  {
+    "color": "magenta",
+    "superColor": "Light"
+  },
+  {
+    "color": "orange",
+    "superColor": "Light"
+  },
+  {
+    "color": "red",
+    "superColor": "Dark"
+  },
+  {
+    "color": "green",
+    "superColor": "Light"
+  },
+  {
+    "color": "beige",
+    "superColor": "Light"
+  },
+  {
+    "color": "crimson",
+    "superColor": "Dark"
+  },
+  {
+    "color": "brown",
+    "superColor": "Dark"
+  },
+  {
+    "color": "light brown",
+    "superColor": "Light"
+  },
+  {
+    "color": "yellow",
+    "superColor": "Light"
+  },
+  {
+    "color": "indigo",
+    "superColor": "Light"
+  },
+  {
+    "color": "blue",
+    "superColor": "Dark"
+  },
+  {
+    "color": "violet",
+    "superColor": "Dark"
+  },
+  {
+    "color": "cream",
+    "superColor": "Light"
+  },
+  {
+    "color": "white",
+    "superColor": "White"
+  },
+  {
+    "color": "black",
+    "superColor": "Black"
+  },
+  {
+    "color": "charcoal gray",
+    "superColor": "Black"
+  },
+  {
+    "color": "gray",
+    "superColor": "Dark"
+  }
+]
+
