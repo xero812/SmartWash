@@ -1,11 +1,13 @@
 package com.smartwash.activity;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
@@ -25,7 +27,6 @@ import java.io.IOException;
 
 public class ScannedBarcodeActivity extends AppCompatActivity {
 
-
     SurfaceView surfaceView;
     TextView txtBarcodeValue;
     private BarcodeDetector barcodeDetector;
@@ -34,7 +35,6 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
     Button btnAction;
     String intentData = "";
     boolean isEmail = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +61,6 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(intentData)));
                     }
                 }
-
-
             }
         });
     }
@@ -94,8 +92,6 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
             }
 
             @Override
@@ -120,33 +116,37 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
 
-
                     txtBarcodeValue.post(new Runnable() {
 
                         @Override
                         public void run() {
 
-                            if (barcodes.valueAt(0).email != null) {
-                                txtBarcodeValue.removeCallbacks(null);
-                                intentData = barcodes.valueAt(0).email.address;
-                                txtBarcodeValue.setText(intentData);
-                                isEmail = true;
-                                btnAction.setText("ADD CONTENT TO THE MAIL");
-                            } else {
-                                isEmail = false;
-                                btnAction.setText("LAUNCH URL");
-                                intentData = barcodes.valueAt(0).displayValue;
-                                txtBarcodeValue.setText(intentData);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ScannedBarcodeActivity.this)
+                                    .setTitle("Barcode data")
+                                    .setMessage(barcodes.valueAt(0).displayValue)
+                                    .setCancelable(true)
+                                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            //initialiseDetectorsAndSources();
+                                            //Whatever...
+                                        }
+                                    });
 
+                            btnAction.setText("SHOW BUCKETS");
+                            intentData = barcodes.valueAt(0).displayValue;
+                            if(!intentData.equals(txtBarcodeValue.getText().toString())) {
+                                builder.show();
                             }
+                            txtBarcodeValue.setText(intentData);
                         }
                     });
+
 
                 }
             }
         });
     }
-
 
     @Override
     protected void onPause() {
