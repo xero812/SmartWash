@@ -29,6 +29,7 @@ public class FabricClassifier {
 
     public FabricClassifier() {
         this.mapping = new Mapping();
+        mapping.transformJSON();
         this.classifierMap = generateClassifier();
     }
 
@@ -79,7 +80,7 @@ public class FabricClassifier {
                 case SUPER_COLOR:
                     if (classifier == null)
                         classifier = classifierMap.get(DEFAULT_MATERIAL_CLASSIFIER);
-                    Classifier colorClassifier = classifier.getClassifiers().get(new ClassifierKey(fabric.getColor(), attribute.getValue()));
+                    Classifier colorClassifier = classifier.getClassifiers().get(new ClassifierKey(mapping.getColorSuperColorMap().get(fabric.getColor()), attribute.getValue()));
                     classifier = colorClassifier == null ? classifier : colorClassifier;
                     break;
             }

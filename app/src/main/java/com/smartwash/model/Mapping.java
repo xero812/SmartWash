@@ -14,10 +14,6 @@ public class Mapping {
     private String superColor;
     private Map<String, String> colorSuperColorMap = new HashMap<>();
 
-    public Mapping() {
-        transformJSON();
-    }
-
     public Map<String, String> getColorSuperColorMap() {
         return colorSuperColorMap;
     }
