@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -16,12 +17,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.gson.Gson;
 import com.smartwash.R;
+import com.smartwash.model.Fabric;
+import com.smartwash.model.FabricClassifier;
 
 import java.io.IOException;
 
@@ -35,6 +38,7 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
     Button btnAction;
     String intentData = "";
     boolean isEmail = false;
+    private FabricClassifier fabricClassifier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
         txtBarcodeValue = findViewById(R.id.txtBarcodeValue);
         surfaceView = findViewById(R.id.surfaceView);
         btnAction = findViewById(R.id.btnAction);
+        fabricClassifier = new FabricClassifier();
 
 
         btnAction.setOnClickListener(new View.OnClickListener() {
@@ -133,12 +138,19 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                                         }
                                     });
 
-                            btnAction.setText("SHOW BUCKETS");
-                            intentData = barcodes.valueAt(0).displayValue;
+                            String data = barcodes.valueAt(0).displayValue;
+                            Fabric fabric = new Gson().fromJson(data, Fabric.class);
+                            int bucketNumber = fabricClassifier.slotBucket(fabric);
+                            intentData = data;
+
+                            builder.setMessage("Put in Bucket : "+bucketNumber+" !");
                             if(!intentData.equals(txtBarcodeValue.getText().toString())) {
                                 builder.show();
                             }
+
+                            btnAction.setText("SHOW BUCKETS");
                             txtBarcodeValue.setText(intentData);
+
                         }
                     });
 
