@@ -3,11 +3,19 @@ package com.smartwash.model;
 import java.util.List;
 
 public class Mapping {
-    String parent;
-    List<String> child;
+    private String parent;
+    private List<String> child;
 
-    public Mapping(String parent) {
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
         this.parent = parent;
+    }
+
+    public List<String> getChild() {
+        return child;
     }
 
     public void setChild(List<String> child) {
