@@ -1,4 +1,4 @@
-package com.smartwash.content;
+package com.smartwash.model;
 
 import java.util.Set;
 
