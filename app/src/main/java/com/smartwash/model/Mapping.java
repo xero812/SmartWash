@@ -1,25 +1,36 @@
 package com.smartwash.model;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import java.util.*;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Mapping {
 
     private String color;
+    private String superColor;
+    private Map<String, String> stringStringMap = new HashMap<>();
+    private String filename = "./resources/colorSuperColorMapping.json";
+
+    public Mapping() throws IOException {
+        transformJSON();
+    }
+
+    public Map<String, String> getStringStringMap() {
+        return stringStringMap;
+    }
+
+    public void setStringStringMap(Map<String, String> stringStringMap) {
+        this.stringStringMap = stringStringMap;
+    }
 
     public String getColor() {
         return color;
@@ -29,8 +40,6 @@ public class Mapping {
         this.color = color;
     }
 
-    private String superColor;
-
     public String getSuperColor() {
         return superColor;
     }
@@ -39,27 +48,15 @@ public class Mapping {
         this.superColor = superColor;
     }
 
-    private String filename = "../resources/colorSuperColorMapping.json";
-
-    public void transformJSON() throws IOException {
-        String jsonString = readFile(filename);
-        Map<String, String> mapColorToSuperColors = new Gson().fromJson(jsonString, Map.class);
-        this.setSuperColor(mapColorToSuperColors.get(this.color));
-    }
-
-    private String readFile(String pathname) throws IOException {
-        File file = new File(pathname);
-        StringBuilder fileContents = new StringBuilder((int) file.length());
-        Scanner scanner = new Scanner(file);
-        String lineSeparator = System.getProperty("line.separator");
-
-        try {
-            while (scanner.hasNextLine()) {
-                fileContents.append(scanner.nextLine() + lineSeparator);
-            }
-            return fileContents.toString();
-        } finally {
-            scanner.close();
+    public  void transformJSON() throws IOException {
+        File file = new File("app/sampledata/colorSuperColorMapping.json");
+        FileReader fileReader = new FileReader(file);
+        JsonReader jsonReader = new JsonReader(fileReader);
+        Mapping[] mappings = new Gson().fromJson(jsonReader, Mapping[].class);
+        Map<String, String> stringMap = new HashMap<>();
+        for (Mapping mapping : mappings){
+            stringMap.put(mapping.getColor(), mapping.getSuperColor());
         }
+        this.stringStringMap = stringMap;
     }
 }
