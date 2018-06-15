@@ -43,7 +43,6 @@ public class ShowBucketActivity extends Activity implements OnItemClickListener
     // Insert The Data
     private void fillData() {
         FabricClassifier fabricClassifier = new FabricClassifier();
-        Log.e("Counts",fabricClassifier.getBuckets().get(0).getFabrics().toString());
         data.addAll(fabricClassifier.getBuckets());
     }
 
