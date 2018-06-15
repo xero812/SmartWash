@@ -51,7 +51,7 @@ public class FabricClassifier implements Serializable{
         childTypeToType.put("kurta","kurta");
         childTypeToType.put("blazzer","blazzer");
         childTypeToType.put("trousers","trousers");
-        childTypeToType.put("jeans","jeans");
+        childTypeToType.put("jeans","trousers");
         childTypeToType.put("sheets","sheets");
         childTypeToType.put("towels","towels");
         childTypeToType.put("delicates","delicates");
