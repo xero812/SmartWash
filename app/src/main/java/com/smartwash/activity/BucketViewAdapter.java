@@ -49,7 +49,7 @@ public class BucketViewAdapter extends ArrayAdapter<Bucket>
         }
 
         Bucket item = getItem(position);
-        holder.txtItem.setText(String.valueOf(item.getId()+" ["+item.getFabrics().size()+"]"));
+        holder.txtItem.setText("Bucket "+ String.valueOf(item.getId()+" ["+item.getFabrics().size()+"]"));
 
         return itemView;
     }

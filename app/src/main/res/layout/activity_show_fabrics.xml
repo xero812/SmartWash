@@ -11,6 +11,7 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="600dp"
         android:textAlignment="center"
         android:text="INSTRUCTIONS" />
 
@@ -19,6 +20,7 @@
         android:layout_width="379dp"
         android:layout_height="71dp"
         android:text="TextView"
+        android:textSize="500dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="3dp" />
 

@@ -1,14 +1,20 @@
 package com.smartwash.model;
 
+import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class FabricClassifier implements Serializable{
 
@@ -119,7 +125,7 @@ public class FabricClassifier implements Serializable{
 
     public List<Bucket> getBuckets() {
         List<Bucket> result = new ArrayList<>();
-        Map<Integer, List<Fabric>> buckets = new HashMap<>();
+        TreeMap<Integer, List<Fabric>> buckets = new TreeMap<>();
         for (Fabric fabric : fabricsProcessed) {
             if (buckets.get(fabric.getBucketId()) == null) {
                 buckets.put(fabric.getBucketId(), new ArrayList<Fabric>());
