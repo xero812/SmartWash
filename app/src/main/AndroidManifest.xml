@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.smartwash">
 
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -20,17 +20,17 @@
         android:roundIcon="@mipmap/appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.smartwash.activity.MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.smartwash.activity.PictureBarcodeActivity" />
-        <activity android:name="com.smartwash.activity.ScannedBarcodeActivity" />
+        <activity android:name=".activity.PictureBarcodeActivity" />
+        <activity android:name=".activity.ScannedBarcodeActivity" />
         <activity
-            android:name="com.smartwash.activity.ShowBucketActivity"
+            android:name=".activity.ShowBucketActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <meta-data
@@ -47,7 +47,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-
+        <activity android:name=".activity.ShowFabricsActivity"></activity>
     </application>
 
 </manifest>

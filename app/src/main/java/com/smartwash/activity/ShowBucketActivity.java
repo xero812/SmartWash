@@ -1,8 +1,10 @@
 package com.smartwash.activity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -58,6 +60,9 @@ public class ShowBucketActivity extends Activity implements OnItemClickListener
     {
         String message = "Clicked : " + data.get(position).getId();
         Toast.makeText(getApplicationContext(), message , Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ShowBucketActivity.this, ShowFabricsActivity.class);
+        intent.putExtra("fabricsC", (Serializable) data.get(position).getFabrics());
+        startActivity(intent);
     }
 
 }
