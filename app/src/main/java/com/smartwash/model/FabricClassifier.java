@@ -23,7 +23,7 @@ public class FabricClassifier implements Serializable{
     private final static List<String> fabricMaterial = Arrays.asList("cotton", "satin", "polyester", "woolen", "blend", "rayon", "nylon", "denim", "default");
     private final static List<String> fabricColour = Arrays.asList("lavender", "purple", "pink", "magenta", "orange", "blue", "red", "green", "beige", "crimson"
             , "brown", "light brown", "yellow", "indigo", "blue", "violet", "yellow", "cream", "white", "black", "charcoal gray", "gray", "default");
-
+    private final static Map<String, String> childTypeToType= new HashMap<>();
     private Mapping mapping;
 
     private Map<ClassifierKey, Classifier> classifierMap;
@@ -33,9 +33,29 @@ public class FabricClassifier implements Serializable{
     private static List<Fabric> fabricsProcessed = new ArrayList<>();
 
     public FabricClassifier() {
+        childTypeToType.put("tshirt","top");
+        childTypeToType.put("top","top");
+        childTypeToType.put("kurta","kurta");
+        childTypeToType.put("blazzer","blazzer");
+        childTypeToType.put("trousers","trousers");
+        childTypeToType.put("jeans","jeans");
+        childTypeToType.put("sheets","sheets");
+        childTypeToType.put("towels","towels");
+        childTypeToType.put("delicates","delicates");
+        childTypeToType.put("default","default");
     }
 
     public FabricClassifier(InputStream file) {
+        childTypeToType.put("tshirt","top");
+        childTypeToType.put("top","top");
+        childTypeToType.put("kurta","kurta");
+        childTypeToType.put("blazzer","blazzer");
+        childTypeToType.put("trousers","trousers");
+        childTypeToType.put("jeans","jeans");
+        childTypeToType.put("sheets","sheets");
+        childTypeToType.put("towels","towels");
+        childTypeToType.put("delicates","delicates");
+        childTypeToType.put("default","default");
         this.mapping = new Mapping();
         mapping.transformJSON(file);
         this.classifierMap = generateClassifier();
@@ -78,7 +98,7 @@ public class FabricClassifier implements Serializable{
         for (FabricAttribute attribute : classificationOrder) {
             switch (attribute) {
                 case TYPE:
-                    classifier = classifierMap.get(new ClassifierKey(fabric.getType(), attribute.getValue()));
+                    classifier = classifierMap.get(new ClassifierKey(childTypeToType.get(fabric.getType()), attribute.getValue()));
                     break;
                 case MATERIAL:
                     if (classifier == null)
