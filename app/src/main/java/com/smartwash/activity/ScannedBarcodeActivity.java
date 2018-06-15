@@ -49,12 +49,15 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
         initViews();
     }
 
-    private void initViews() {
+    private void initViews(){
         txtBarcodeValue = findViewById(R.id.txtBarcodeValue);
         surfaceView = findViewById(R.id.surfaceView);
         btnAction = findViewById(R.id.btnAction);
-        fabricClassifier = new FabricClassifier();
-
+        try {
+            fabricClassifier = new FabricClassifier(getAssets().open("colorSuperColorMapping.json"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         btnAction.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,5 +1,8 @@
 package com.smartwash.model;
 
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,8 +19,8 @@ public class FabricClassifier implements Serializable{
     private final static ClassifierKey DEFAULT_MATERIAL_CLASSIFIER = new ClassifierKey("default", FabricAttribute.MATERIAL.getValue());
     private final static ClassifierKey DEFAULT_COLOR_CLASSIFIER = new ClassifierKey("default", FabricAttribute.SUPER_COLOR.getValue());
 
-    private final static List<String> fabricTypes = Arrays.asList("casual", "ethnic", "denim", "traditional", "formal", "sheets", "towels", "delicates", "default");
-    private final static List<String> fabricMaterial = Arrays.asList("cotton", "satin", "polyester", "woolen", "blend", "rayon", "nylon", "default");
+    private final static List<String> fabricTypes = Arrays.asList("tshirt", "top", "kurta", "blazzer", "trousers", "jeans", "sheets", "towels", "delicates", "default");
+    private final static List<String> fabricMaterial = Arrays.asList("cotton", "satin", "polyester", "woolen", "blend", "rayon", "nylon", "denim", "default");
     private final static List<String> fabricColour = Arrays.asList("lavender", "purple", "pink", "magenta", "orange", "blue", "red", "green", "beige", "crimson"
             , "brown", "light brown", "yellow", "indigo", "blue", "violet", "yellow", "cream", "white", "black", "charcoal gray", "gray", "default");
 
@@ -30,8 +33,11 @@ public class FabricClassifier implements Serializable{
     private static List<Fabric> fabricsProcessed = new ArrayList<>();
 
     public FabricClassifier() {
+    }
+
+    public FabricClassifier(InputStream file) {
         this.mapping = new Mapping();
-        mapping.transformJSON();
+        mapping.transformJSON(file);
         this.classifierMap = generateClassifier();
     }
 

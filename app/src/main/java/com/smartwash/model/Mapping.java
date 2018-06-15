@@ -1,10 +1,17 @@
 package com.smartwash.model;
 
+import android.os.Environment;
+
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,10 +45,9 @@ public class Mapping {
         this.superColor = superColor;
     }
 
-    public void transformJSON() {
+    public void transformJSON(InputStream file) {
         try {
-            File file = new File("app/sampledata/colorSuperColorMapping.json");
-            FileReader fileReader = new FileReader(file);
+            InputStreamReader fileReader = new InputStreamReader(file);
             JsonReader jsonReader = new JsonReader(fileReader);
             Mapping[] mappings = new Gson().fromJson(jsonReader, Mapping[].class);
             Map<String, String> stringMap = new HashMap<>();
