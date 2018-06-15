@@ -1,6 +1,10 @@
 package com.smartwash.model;
 
-public class Fabric {
+import java.io.Serializable;
+
+public class Fabric implements Serializable {
+
+    private static final long serialVersionUID = 2L;
 
     private String type;
     private String material;

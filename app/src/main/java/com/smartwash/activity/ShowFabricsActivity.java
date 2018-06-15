@@ -21,7 +21,7 @@ public class ShowFabricsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ArrayList<Bucket> data = (ArrayList<Bucket>) extras.getSerializable("fabricsC");
-            textView.setText(data.size());
+            textView.setText(""+data.size());
         }
 
 
