@@ -33,19 +33,17 @@ public class FabricClassifier implements Serializable{
     private static List<Fabric> fabricsProcessed = new ArrayList<>();
 
     public FabricClassifier() {
-        childTypeToType.put("tshirt","top");
-        childTypeToType.put("top","top");
-        childTypeToType.put("kurta","kurta");
-        childTypeToType.put("blazzer","blazzer");
-        childTypeToType.put("trousers","trousers");
-        childTypeToType.put("jeans","jeans");
-        childTypeToType.put("sheets","sheets");
-        childTypeToType.put("towels","towels");
-        childTypeToType.put("delicates","delicates");
-        childTypeToType.put("default","default");
+        setChildTypeToType();
     }
 
     public FabricClassifier(InputStream file) {
+        setChildTypeToType();
+        this.mapping = new Mapping();
+        mapping.transformJSON(file);
+        this.classifierMap = generateClassifier();
+    }
+
+    private void setChildTypeToType(){
         childTypeToType.put("tshirt","top");
         childTypeToType.put("top","top");
         childTypeToType.put("kurta","kurta");
@@ -56,9 +54,6 @@ public class FabricClassifier implements Serializable{
         childTypeToType.put("towels","towels");
         childTypeToType.put("delicates","delicates");
         childTypeToType.put("default","default");
-        this.mapping = new Mapping();
-        mapping.transformJSON(file);
-        this.classifierMap = generateClassifier();
     }
 
     private Map<ClassifierKey, Classifier> generateClassifier() {
