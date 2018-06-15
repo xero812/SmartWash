@@ -1,13 +1,15 @@
 package com.smartwash.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FabricClassifier {
+public class FabricClassifier implements Serializable{
 
+    private static final long serialVersionUID = 1L;
     private final static List<FabricAttribute> classificationOrder = Arrays.asList(FabricAttribute.values());
 
     private final static ClassifierKey DEFAULT_TYPE_CLASSIFIER = new ClassifierKey("default", FabricAttribute.TYPE.getValue());

@@ -47,4 +47,15 @@ public class Fabric {
     public void setBucketId(Integer bucketId) {
         this.bucketId = bucketId;
     }
+
+    @Override
+    public String toString() {
+        return "Fabric{" +
+                "type='" + type + '\'' +
+                ", material='" + material + '\'' +
+                ", color='" + color + '\'' +
+                ", superColor='" + superColor + '\'' +
+                ", bucketId=" + bucketId +
+                '}';
+    }
 }

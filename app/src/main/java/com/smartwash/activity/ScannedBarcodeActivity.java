@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -58,14 +59,9 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
         btnAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (intentData.length() > 0) {
-                    if (isEmail)
-                        startActivity(new Intent(ScannedBarcodeActivity.this, EmailActivity.class).putExtra("email_address", intentData));
-                    else {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(intentData)));
-                    }
-                }
+                Intent intent = new Intent(ScannedBarcodeActivity.this, ShowBucketActivity.class);
+                //intent.putExtra("fabricC", null);
+                startActivity(intent);
             }
         });
     }
@@ -139,12 +135,12 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                                     });
 
                             String data = barcodes.valueAt(0).displayValue;
-                            Fabric fabric = new Gson().fromJson(data, Fabric.class);
-                            int bucketNumber = fabricClassifier.slotBucket(fabric);
                             intentData = data;
 
-                            builder.setMessage("Put in Bucket : "+bucketNumber+" !");
                             if(!intentData.equals(txtBarcodeValue.getText().toString())) {
+                                Fabric fabric = new Gson().fromJson(data, Fabric.class);
+                                int bucketNumber = fabricClassifier.slotBucket(fabric);
+                                builder.setMessage("Put in Bucket : "+bucketNumber+" !");
                                 builder.show();
                             }
 

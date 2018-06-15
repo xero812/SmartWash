@@ -21,4 +21,14 @@ public class Bucket {
     public void setFabrics(List<Fabric> fabrics) {
         this.fabrics = fabrics;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public List<Fabric> getFabrics() {
+        return fabrics;
+    }
+
+
 }
